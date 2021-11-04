@@ -1,0 +1,2 @@
+# fractol
+Computer graphics project
