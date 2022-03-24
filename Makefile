@@ -10,70 +10,73 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 ### COMPILATION ###
-CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
-LFLAGS	= -L $(LIBFT) -L $(MLX)
-LINKS	= -lmlx -lm -lX11 -lXext -lm -lft -lz
+CC      = gcc -O2
+FLAGS  = -Wall -Wextra
 
 ### EXECUTABLE ###
-NAME	= fractol
+NAME   = fractol
 
 ### INCLUDES ###
-LIBFT	= libft
-OBJ_DIR	= bin
-HEADER	= includes
-SRC_DIR	= src
-MLX		= minilibx-linux
+LIBFT  = libft
+OBJ_PATH  = objs
+HEADER = includes
+SRC_PATH  = src
+MLX = minilibx-linux
 
 ### SOURCE FILES ###
-SRCS	= fractol.c \
+SOURCES = fractol.c \
 
 ### OBJECTS ###
-OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+
+SRCS = $(addprefix $(SRC_PATH)/,$(SOURCES))
+OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 
 ### COLORS ###
-NOC		= \033[0m
-BLACK	= \033[1;30m
-RED		= \033[1;31m
-GREEN	= \033[1;32m
-YELLOW	= \033[1;33m
-BLUE	= \033[1;34m
-PURPLE	= \033[1;35m
-CYAN	= \033[1;36m
-WHITE	= \033[1;37m
+NOC         = \033[0m
+BOLD        = \033[1m
+UNDERLINE   = \033[4m
+BLACK       = \033[1;30m
+RED         = \033[1;31m
+GREEN       = \033[1;32m
+YELLOW      = \033[1;33m
+BLUE        = \033[1;34m
+VIOLET      = \033[1;35m
+CYAN        = \033[1;36m
+WHITE       = \033[1;37m
 
 ### RULES ###
-all:	$(NAME)
+
+all: lib tmp $(NAME)
 
 lib:
-	@echo "$(GREEN)Creating lib files$(NOC)"
+	@echo "$(GREEN)Creating lib files$(CYAN)"
 	@make -C $(LIBFT)
 	@make -C $(MLX)
 
-$(NAME):	lib $(OBJ_DIR) $(OBJS)
-	@$(CC) $(CFLAGS) $(LFLAGS) $(LINKS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)Project successfully compiled$(NOC)"
+$(NAME): $(OBJS)
+	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) -o $@ $^ -lft -lmlx -lXext -lX11 -lm
+	@echo "$(GREEN)Project successfully compiled"
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+tmp:
+	@mkdir -p objs
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADER)/$(NAME).h
-	@$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -I$(MLX) -c $< -o $@
-	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(GREEN)[Done]$(NOC)"
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)/$(NAME).h
+	@$(CC) $(FLAGS) -c -o $@ $<
+	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
 
 clean:
-	@echo "$(GREEN)Supressing libraries files$(NOC)"
+	@echo "$(GREEN)Supressing libraries files$(CYAN)"
 	@make clean -C $(LIBFT)
-	@make clean -C $(MLX)
-	@echo "$(GREEN)Supressing object files$(NOC)"
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_PATH)
 
-fclean:	clean
-	@make fclean -C $(LIBFT)
-	@echo "$(GREEN)Supressing program file$(NOC)"
+fclean:
+	@echo "$(GREEN)Supressing libraries files$(CYAN)"
+	@rm -rf $(OBJ_PATH)
 	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
 
-re:	fclean all
+re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: temporary, re, fclean, clean
