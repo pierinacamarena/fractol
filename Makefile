@@ -27,6 +27,8 @@ MLX = minilibx-linux
 
 ### SOURCE FILES ###
 SOURCES = fractol.c \
+			basic_drawing.c \
+			shapes.c \
 
 ### OBJECTS ###
 
