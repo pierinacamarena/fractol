@@ -17,9 +17,20 @@
 # include <stdlib.h>
 # include <math.h>
 # include <X11/X.h>
+# include <complex.h>
 # include <stdio.h>
 # include "../libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
+
+# define win_width 600
+# define win_height 600
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+}				t_mlx;
+
 
 typedef struct	s_data {
 	void	*img;
@@ -28,6 +39,17 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_data;
+
+typedef struct s_mandel
+{
+	int		maxN;
+    double	min_r;
+    double	max_r;
+    double	min_i;
+    double	max_i;
+	double	cr;
+	double	ci;
+}				t_mandel;
 
 /*
 basic_drawing.c
@@ -44,5 +66,10 @@ void    draw_line_slope_downwards(t_data *img, int x, int y, int len, int color)
 void    draw_square(t_data *img, int x, int y, int len, int color);
 void    draw_triangle(t_data *img, int x, int y, int len, int color);
 void    midpointcircle(t_data *img, int x, int y, int r, int color);
+
+/*
+mandelbrot_set.c
+*/
+void    mandelbrot(t_mlx *tmlx, t_data *img);
 
 #endif
