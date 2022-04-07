@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,34 @@
 
 #include "../includes/fractol.h"
 
-int	main(void)
+void    draw(t_mlx *tmlx, t_data *img)
 {
-	t_mlx	tmlx;
-	t_data	img;
+    int x;
+    int y;
 
-	/*this will establish a connection to the correct graphical system and will 
-        return a void * which holds the location of our current MLX instance.*/
-    tmlx.mlx = mlx_init();
+    y = 0;
+    while (y < win_height)
+    {
+        x = 0;
+        while (x < win_width)
+        {
+            mandelbrot(img, x, y);
+            x++;
+        }
+        y++;
+    }
+    mlx_put_image_to_window(tmlx->mlx, tmlx->mlx_win, img->img, 0, 0);
+}
 
-	tmlx.mlx_win = mlx_new_window(tmlx.mlx, win_width, win_height, "Hello world!");
-	img.img = mlx_new_image(tmlx.mlx, win_width, win_height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	draw(&tmlx, &img);
-	//julia(&tmlx, &img);
-	//mandelbrot(&tmlx, &img);
-	mlx_loop(tmlx.mlx);
+t_complex   convert_to_complex(int x, int y, t_mandelalt *m)
+{
+    t_complex   c;
+    double      range_x;
+    double      range_y;
+    
+    range_x = m->xmax - m->xmin;
+    range_y = m->ymax - m->ymin;
+    c.r = ((double)x * (range_x / win_width) + m->xmin);
+    c.i = ((double)y * (range_y /win_height) + m->ymin);
+    return (c);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   julia_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-double map_to_real(int x, int image_width, double min_r, double max_r)
+double map_to_real_julia(int x, int image_width, double min_r, double max_r)
 {
     double range;
 
@@ -20,7 +20,7 @@ double map_to_real(int x, int image_width, double min_r, double max_r)
     return ((double)x * (range / image_width) + min_r);
 }
 
-double map_to_imaginary(int y, int image_height, double min_i, double max_i)
+double map_to_imaginary_julia(int y, int image_height, double min_i, double max_i)
 {
     double range;
 
@@ -28,7 +28,7 @@ double map_to_imaginary(int y, int image_height, double min_i, double max_i)
     return ((double)y * (range / image_height) + min_i);
 }
 
-int findMandelbrot(double cr, double ci, int maxN )
+int find_julia(double cr, double ci, int x, int y, int maxN)
 {
     int     i;
     double  zr;
@@ -48,35 +48,50 @@ int findMandelbrot(double cr, double ci, int maxN )
     return (i);
 }
 
-void    init_mandelbrot(t_mandel *mandel)
+void    init_julia(t_julia *julia)
 {
-    mandel->min_r = -1.5;
-    mandel->max_r = 0.7;
-    mandel->min_i = -1.0;
-    mandel->max_i = 1.0;
-    mandel->maxN = 255;
+    julia->min_r = -1.5;
+    julia->max_r = 0.7;
+    julia->min_i = -1.0;
+    julia->max_i = 1.0;
+    julia->maxN = 255;
 }
 
 /*
 for every pixel 
     find the real and imaginary values for c, corresponding
     to that x,y pixel in the image
-    find the number of instructions in the mandelbrot formula
+    find the number of instructions in the julia formula
     using said c.
     Map the resulting number to an RGB VALUE
 */
 
-void    mandelbrot_set(t_data *img, int x, int y)
+void    julia(t_mlx *tmlx, t_data *img)
 {
+    int x;
+    int y;
     int n;
-    t_mandel mandel;
+    t_julia julia;
     
-    init_mandelbrot(&mandel);
-    mandel.cr = map_to_real(x, win_width, mandel.min_r, mandel.max_r);
-    mandel.ci = map_to_imaginary(y, win_height, mandel.min_i, mandel.max_i); 
-    n = findMandelbrot(mandel.cr, mandel.ci, mandel.maxN);
-    if (n < mandel.maxN) 
-        my_mlx_pixel_put(img, x, y, 0xffffff);
-    else
-        my_mlx_pixel_put(img, x, y, 0x2b9fa3);
+    y = 0;
+    init_julia(&julia);
+    while (y < win_height)
+    {
+        x = 0;
+        while (x < win_width)
+        {
+            julia.cr = map_to_real_julia(x, win_width, julia.min_r, julia.max_r);
+            julia.ci = map_to_imaginary_julia(y, win_height, julia.min_i, julia.max_i); 
+            //julia.cr = 0.70176;
+            //julia.ci = - 0.3842;
+            n = find_julia(julia.cr, julia.ci, x, y, julia.maxN);
+            if (n < julia.maxN) 
+                my_mlx_pixel_put(img, x, y, 0xffffff);
+            else
+                my_mlx_pixel_put(img, x, y, 0x2b9fa3);
+            x++;
+        }
+        y++;
+    }
+    mlx_put_image_to_window(tmlx->mlx, tmlx->mlx_win, img->img, 0, 0);
 }

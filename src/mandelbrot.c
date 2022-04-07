@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   mandelbrot_alternative.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,37 @@
 
 #include "../includes/fractol.h"
 
-int	main(void)
+void    mandel_init(t_mandelalt *m)
 {
-	t_mlx	tmlx;
-	t_data	img;
+    m->maxN = 255;
+    m->xmin = -1.5;
+    m->xmax = 0.7;
+    m->ymin = -1.0;
+    m->ymax = 1.0;
+}
 
-	/*this will establish a connection to the correct graphical system and will 
-        return a void * which holds the location of our current MLX instance.*/
-    tmlx.mlx = mlx_init();
-
-	tmlx.mlx_win = mlx_new_window(tmlx.mlx, win_width, win_height, "Hello world!");
-	img.img = mlx_new_image(tmlx.mlx, win_width, win_height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	draw(&tmlx, &img);
-	//julia(&tmlx, &img);
-	//mandelbrot(&tmlx, &img);
-	mlx_loop(tmlx.mlx);
+void    mandelbrot(t_data *img, int x, int y)
+{
+    t_complex   c;
+    t_complex   z;
+    t_complex   temp;
+    t_mandelalt m;
+    int         i;
+    
+    mandel_init(&m);
+    c = convert_to_complex(x, y, &m);
+    z = convert_to_complex(x, y, &m);
+    i = 0;
+    while ((i < m.maxN) && (z.r * z.r + z.i * z.i < 4.0))
+    {
+        temp.r = z.r * z.r - z.i * z.i + c.r; 
+        temp.i = z.r * z.i * 2.0 + c.i;
+        z.r = temp.r;
+        z.i = temp.i;
+        i++;
+    }
+    if (i < m.maxN) 
+        my_mlx_pixel_put(img, x, y, 0xffffff);
+    else
+        my_mlx_pixel_put(img, x, y, 0x2b9fa3);
 }

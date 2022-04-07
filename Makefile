@@ -30,6 +30,9 @@ SOURCES = fractol.c \
 			basic_drawing.c \
 			shapes.c \
 			mandelbrot_set.c \
+			julia_set.c \
+			draw.c \
+			mandelbrot.c \
 
 ### OBJECTS ###
 
