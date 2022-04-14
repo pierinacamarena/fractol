@@ -28,11 +28,10 @@ MLX = minilibx-linux
 ### SOURCE FILES ###
 SOURCES = fractol.c \
 			basic_drawing.c \
-			shapes.c \
-			mandelbrot_set.c \
-			julia_set.c \
 			draw.c \
 			mandelbrot.c \
+			julia.c \
+			hook.c \
 
 ### OBJECTS ###
 
