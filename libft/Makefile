@@ -41,6 +41,7 @@ SOURCE =			src/ft_atoi.c 			\
 						src/ft_strlcpy.c		\
 						src/ft_strlen.c		\
 						src/ft_strmapi.c		\
+						src/ft_strcmp.c			\
 						src/ft_strncmp.c		\
 						src/ft_strnew.c		\
 						src/ft_strnstr.c		\

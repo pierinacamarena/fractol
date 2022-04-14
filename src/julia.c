@@ -19,10 +19,10 @@ void    julia_init(t_setup *j)
     j->xmax = 2.0f;
     j->ymin = -2.0f;
     j->ymax = 2.0f;   
-    j->fractal = ft_strdup('julia');
+    j->fractal = ft_strdup("julia");
 }
 
-void    julia(t_data *img, int x, int y)
+void    julia(t_mlx *tmlx, int x, int y)
 {
     t_complex   c;
     t_complex   z;
@@ -34,8 +34,8 @@ void    julia(t_data *img, int x, int y)
     z = convert_to_complex(x, y, &j);
     //c.r = -0.7269;
     //c.i = 0.1889;
-    //c.r = -0.8;
-    //c.i = 0.156;
+    c.r = -0.8;
+    c.i = 0.156;
     i = 0;
     while ((i < j.maxN) && (z.r * z.r + z.i * z.i < 4.0))
     {
@@ -51,7 +51,7 @@ void    julia(t_data *img, int x, int y)
         i++;
     }
     if (i < j.maxN) 
-        my_mlx_pixel_put(img, x, y, 0xffffff);
+        my_mlx_pixel_put(tmlx, x, y, 0xffffff);
     else
-        my_mlx_pixel_put(img, x, y, 0x2b9fa3);
+        my_mlx_pixel_put(tmlx, x, y, 0x2b9fa3);
 }

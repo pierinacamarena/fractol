@@ -24,11 +24,17 @@
 
 # define win_width 1370
 # define win_height 700
+# define ESCKEY		65307
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }				t_mlx;
 
 
@@ -57,33 +63,39 @@ typedef struct	s_setup
 	char	*fractal;
 }				t_setup;
 
+/*
+fractol.c
+*/
+
+char	param_check(char *fractal);
 
 /*
 basic_drawing.c
 */
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y, int color);
 
 /*
 draw.c
 */
-void		draw(t_mlx *tmlx, t_data *img, char *param);
+void		draw(t_mlx *tmlx, char param);
 t_complex	convert_to_complex(int x, int y, t_setup *m);
 
 /*
 mandelbrot.c
 */
 void    mandel_init(t_setup *m);
-void    mandelbrot(t_data *img, int x, int y);
+void    mandelbrot(t_mlx *tmlx, int x, int y);
 
 /*
 julia.c
 */
 void    julia_init(t_setup *j);
-void    julia(t_data *img, int x, int y);
+void    julia(t_mlx *tmlx, int x, int y);
 
 /*
 hook.c
 */
+int	close_window(int keycode, t_mlx *tmlx);
 int	key_hook(int keycode, t_mlx *tmlx);
 
 #endif

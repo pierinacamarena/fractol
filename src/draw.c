@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-void    draw(t_mlx *tmlx, t_data *img, char *param)
+void    draw(t_mlx *tmlx, char param)
 {
     int x;
     int y;
@@ -23,16 +23,15 @@ void    draw(t_mlx *tmlx, t_data *img, char *param)
         x = 0;
         while (x < win_width)
         {
-            if (param[0] == 'm')
-                mandelbrot(img, x, y);
-            else if (param[0] == 'j')
-                julia(img, x, y);
+            if (param == 'm')
+                mandelbrot(tmlx, x, y);
+            else if (param == 'j')
+                julia(tmlx, x, y);
             x++;
         }
         y++;
     }
-    free(param);
-    mlx_put_image_to_window(tmlx->mlx, tmlx->mlx_win, img->img, 0, 0);
+    mlx_put_image_to_window(tmlx->mlx, tmlx->mlx_win, tmlx->img, 0, 0);
 }
 
 t_complex   convert_to_complex(int x, int y, t_setup *m)

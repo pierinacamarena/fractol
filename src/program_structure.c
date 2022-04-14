@@ -1,0 +1,7 @@
+/*
+
+So I need to structure the program
+
+the first thing is to receive the arguments and decide how i want to trs
+
+*/

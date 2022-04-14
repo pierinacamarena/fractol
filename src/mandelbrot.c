@@ -19,10 +19,10 @@ void    mandel_init(t_setup *m)
     m->xmax = 2.0f;
     m->ymin = -1.0f;
     m->ymax = 1.0f;
-    m->fractal = ft_strdup('mandelbrot');
+    m->fractal = ft_strdup("mandelbrot");
 }
 
-void    mandelbrot(t_data *img, int x, int y)
+void    mandelbrot(t_mlx *tmlx, int x, int y)
 {
     t_complex   c;
     t_complex   z;
@@ -48,7 +48,7 @@ void    mandelbrot(t_data *img, int x, int y)
         i++;
     }
     if (i < m.maxN) 
-        my_mlx_pixel_put(img, x, y, 0xffffff);
+        my_mlx_pixel_put(tmlx, x, y, 0xffffff);
     else
-        my_mlx_pixel_put(img, x, y, 0x2b9fa3);
+        my_mlx_pixel_put(tmlx, x, y, 0x2b9fa3);
 }

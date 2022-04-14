@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_drawing.c                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 19:28:50 by pcamaren          #+#    #+#             */
-/*   Updated: 2021/10/07 15:46:16 by pcamaren         ###   ########.fr       */
+/*   Created: 2019/11/18 21:14:56 by pcamaren          #+#    #+#             */
+/*   Updated: 2019/12/03 17:11:35 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "../includes/libft.h"
 
-void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y, int color)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*dst;
+	const unsigned char	*p1;
+	const unsigned char	*p2;
+	unsigned char		c1;
+	unsigned char		c2;
 
-	dst = tmlx->addr + (y * tmlx->line_length + x * (tmlx->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	p1 = (const unsigned char *)s1;
+	p2 = (const unsigned char *)s2;
+	c1 = *p1;
+	c2 = *p2;
+	while (c1 == c2)
+	{
+		c1 = (unsigned char)*p1++;
+		c2 = (unsigned char)*p2++;
+		if (c1 == '\0')
+			return (c1 - c2);
+	}
+	return (c1 - c2);
 }

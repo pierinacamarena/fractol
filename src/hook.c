@@ -13,12 +13,25 @@
 #include "../includes/fractol.h"
 
 /*
-** change julia's real number based on mouse position
+** close the window when the ESC key is pressed
+*/
+
+
+int	close_window(int keycode, t_mlx *tmlx)
+{
+	if (keycode == ESCKEY)
+		free(tmlx);
+	exit(0);
+}
+
+/*
+Driving the different keyboard hooks
 */
 
 int	key_hook(int keycode, t_mlx *tmlx)
 {
-	printf("Hello from key_hook!\n");
+	if (keycode == ESCKEY)
+		close_window(keycode, tmlx);
 	return (0);
 }
 /*
