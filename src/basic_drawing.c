@@ -12,10 +12,10 @@
 
 #include "../includes/fractol.h"
 
-void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y, int color)
+void	my_mlx_pixel_put(t_mlx *t, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = tmlx->addr + (y * tmlx->line_length + x * (tmlx->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	dst = t->addr + (y * t->line_length + x * (t->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

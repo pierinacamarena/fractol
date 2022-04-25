@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,41 +12,28 @@
 
 #include "../includes/fractol.h"
 
-void	draw(t_mlx *t)
+void	set_up(t_mlx *t)
 {
-	int	x;
-	int	y;
-
-	t->yscale = (t->xmax - t->xmin) / (WIDTH - 1);
-	t->xscale = (t->ymax - t->ymin) / (HEIGHT - 1);
-	y = 0;
-	t->c.i = t->ymin + y * t->yscale;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			t->c.r = t->xmin + x * t->xscale;
-			if (t->param == 'm')
-				mandelbrot(t, x, y);
-			else if (t->param == 'j')
-				julia(t, x, y);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(t->mlx, t->mlx_win, t->img, 0, 0);
+	if (t->param == 'm')
+		mandel_init(t);
+	else if (t->param == 'j')
+		julia_init(t);
 }
 
-t_complex	convert_to_complex(int x, int y, t_mlx *t)
+void	init_image(t_mlx *t)
 {
-	t_complex	c;
-	double		range_x;
-	double		range_y;
-
-	range_x = t->xmax - t->xmin;
-	range_y = t->ymax - t->ymin;
-	c.r = ((double)x * (range_x / WIDTH) + t->xmin);
-	c.i = ((double)y * (range_y / HEIGHT) + t->ymin);
-	return (c);
+	t->mlx = mlx_init();
+	if (t->param == 'm')
+	{
+		t->mlx_win = mlx_new_window(t->mlx, \
+				WIDTH, HEIGHT, "Mandelbrot");
+	}
+	else if (t->param == 'j')
+	{
+		t->mlx_win = mlx_new_window(t->mlx, \
+				WIDTH, HEIGHT, "Julia");
+	}
+	t->img = mlx_new_image(t->mlx, WIDTH, HEIGHT);
+	t->addr = mlx_get_data_addr(t->img, \
+			&t->bits_per_pixel, &t->line_length, &t->endian);
 }

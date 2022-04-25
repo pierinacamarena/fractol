@@ -32,6 +32,8 @@ SOURCES = fractol.c \
 			mandelbrot.c \
 			julia.c \
 			hook.c \
+			init.c \
+			zoom.c \
 
 ### OBJECTS ###
 
