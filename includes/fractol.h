@@ -26,12 +26,23 @@
 # define UP		65364
 # define LEFT		65361
 # define RIGHT		65363
+# define COLORKEY	99
 
 typedef struct s_complex
 {
 	double	r;
 	double	i;
 }				t_complex;
+
+typedef struct s_color
+{
+	int		r;
+	int		g;
+	int		b;
+	int		rr;
+	int		rb;
+	int		rg;
+}				t_color;
 
 typedef struct s_mlx
 {
@@ -40,7 +51,6 @@ typedef struct s_mlx
 	void		*img;
 	char		*addr;
 	char		param;
-	char		*fractal;
 	char		julia_id;
 	int			bits_per_pixel;
 	int			line_length;
@@ -56,6 +66,7 @@ typedef struct s_mlx
 	t_complex	c;
 	t_complex	z;
 	t_complex	temp;
+	t_color		pixel;
 
 }				t_mlx;
 
@@ -67,7 +78,9 @@ char	param_check(char **av, int ac, t_mlx *t);
 /*
 basic_drawing.c
 */
-void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y, int color);
+void	color(t_mlx *t, int i);
+void	color_change(t_mlx *t);
+void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y);
 
 /*
 draw.c
@@ -107,4 +120,15 @@ zoom.c
 */
 int		mouse_hook(int button, int x, int y, t_mlx *t);
 
+/*
+burningship.c
+*/
+void	burningship_init(t_mlx *t);
+void	burningship(t_mlx *t, int x, int y);
+
+/*
+param_helper.c
+*/
+char	param_julia_helper(char **av, t_mlx *t);
+void	error_message(int i, char f);
 #endif

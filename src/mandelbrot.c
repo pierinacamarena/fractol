@@ -14,13 +14,14 @@
 
 void	mandel_init(t_mlx *t)
 {
+	t->pixel.rr = 30 % (0x4F + 0x01);
+	t->pixel.rg = 90 % (0x4F + 0x01);
+	t->pixel.rb = 60 % (0x4F + 0x01);
 	t->max_iter = 100;
 	t->xmin = -2.0;
 	t->xmax = 2.0;
 	t->ymin = -1.0;
-	t->ymax = t->ymin + (t->xmax - t->xmin) * HEIGHT / WIDTH;
-	//t->ymax = 1.0;
-	t->fractal = ft_strdup("mandelbrot");
+	t->ymax = 1.0;
 	t->zoom = 100;
 }
 
@@ -44,8 +45,6 @@ void	mandelbrot(t_mlx *t, int x, int y)
 		t->z.i = t->temp.i;
 		i++;
 	}
-	if (i < t->max_iter)
-		my_mlx_pixel_put(t, x, y, 0xffffff);
-	else
-		my_mlx_pixel_put(t, x, y, 0x2b9fa3);
+	color(t, i);
+	my_mlx_pixel_put(t, x, y);
 }

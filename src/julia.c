@@ -14,13 +14,14 @@
 
 void	julia_init(t_mlx *t)
 {
+	t->pixel.rr = 70 % (0x4F + 0x01);
+	t->pixel.rg = 90 % (0x4F + 0x01);
+	t->pixel.rb = 0 % (0x4F + 0x01);
 	t->max_iter = 100;
 	t->xmin = -2.0;
 	t->xmax = 2.0;
 	t->ymin = -2.0;
-	t->ymax = t->ymin + (t->xmax - t->xmin) * HEIGHT / WIDTH;
-	//t->ymax = 2.0;   
-	t->fractal = ft_strdup("julia");
+	t->ymax = 2.0;
 	t->zoom = 100;
 }
 
@@ -62,8 +63,8 @@ t_complex	julia_parameters(t_mlx *t)
 	}
 	else if (t->julia_id == 'c')
 	{
-		c.i = 0.3;
-		c.r = -0.01;
+		c.i = -0.835;
+		c.r = -0.2321;
 	}
 	else
 		c = julia_parameters_helper(t);
@@ -90,8 +91,6 @@ void	julia(t_mlx *t, int x, int y)
 		t->z.i = t->temp.i;
 		i++;
 	}
-	if (i < t->max_iter)
-		my_mlx_pixel_put(t, x, y, 0xffffff);
-	else
-		my_mlx_pixel_put(t, x, y, 0x2b9fa3);
+	color(t, i);
+	my_mlx_pixel_put(t, x, y);
 }

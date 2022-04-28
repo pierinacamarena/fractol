@@ -31,6 +31,8 @@ void	draw(t_mlx *t)
 				mandelbrot(t, x, y);
 			else if (t->param == 'j')
 				julia(t, x, y);
+			else if (t->param == 'b')
+				burningship(t, x, y);
 			x++;
 		}
 		y++;

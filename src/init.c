@@ -18,6 +18,8 @@ void	set_up(t_mlx *t)
 		mandel_init(t);
 	else if (t->param == 'j')
 		julia_init(t);
+	else if (t->param == 'b')
+		burningship_init(t);
 }
 
 void	init_image(t_mlx *t)
@@ -32,6 +34,11 @@ void	init_image(t_mlx *t)
 	{
 		t->mlx_win = mlx_new_window(t->mlx, \
 				WIDTH, HEIGHT, "Julia");
+	}
+	if (t->param == 'b')
+	{
+		t->mlx_win = mlx_new_window(t->mlx, \
+		WIDTH, HEIGHT, "Burningship");
 	}
 	t->img = mlx_new_image(t->mlx, WIDTH, HEIGHT);
 	t->addr = mlx_get_data_addr(t->img, \

@@ -12,8 +12,8 @@
 
 
 ### COMPILATION ###
-CC      = gcc -O2
-FLAGS  = -Wall -Wextra
+CC      = gcc -O2 -g
+FLAGS  = -Wall -Wextra -Werror
 
 ### EXECUTABLE ###
 NAME   = fractol
@@ -34,6 +34,8 @@ SOURCES = fractol.c \
 			hook.c \
 			init.c \
 			zoom.c \
+			burningship.c \
+			param_helper.c \
 
 ### OBJECTS ###
 
