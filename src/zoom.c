@@ -19,12 +19,12 @@ static double	interpolate(double start, double end, double inter)
 
 static void	apply_zoom(int x, int y, t_mlx *t)
 {
-	t_complex	mouse;
+	t_comp		mouse;
 	double		inter;
 
 	inter = 1.0 / t->zoom;
-	mouse.r = x / (WIDTH / (t->xmax - t->xmin)) + t->xmin;
-	mouse.i = y / (HEIGHT / (t->ymax - t->ymin)) + t->ymin;
+	mouse.r = x / (t->width / (t->xmax - t->xmin)) + t->xmin;
+	mouse.i = y / (t->height / (t->ymax - t->ymin)) + t->ymin;
 	t->xmin = interpolate(mouse.r, t->xmin, inter);
 	t->ymin = interpolate(mouse.i, t->ymin, inter);
 	t->xmax = interpolate(mouse.r, t->xmax, inter);

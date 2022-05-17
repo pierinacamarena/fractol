@@ -25,9 +25,9 @@ void	julia_init(t_mlx *t)
 	t->zoom = 100;
 }
 
-t_complex	julia_parameters_helper(t_mlx *t)
+t_comp	julia_parameters_helper(t_mlx *t)
 {
-	t_complex	c;
+	t_comp	c;
 
 	if (t->julia_id == 'd')
 	{
@@ -47,9 +47,9 @@ t_complex	julia_parameters_helper(t_mlx *t)
 	return (c);
 }
 
-t_complex	julia_parameters(t_mlx *t)
+t_comp	julia_parameters(t_mlx *t)
 {
-	t_complex	c;
+	t_comp	c;
 
 	if (t->julia_id == 'a')
 	{

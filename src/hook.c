@@ -63,7 +63,7 @@ int	key_hook(int keycode, t_mlx *t)
 
 void	move_fractal(int keycode, t_mlx *t)
 {
-	t_complex	r;
+	t_comp	r;
 
 	r.r = t->xmax - t->xmin;
 	r.i = t->ymax - t->ymin;

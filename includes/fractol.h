@@ -19,8 +19,6 @@
 # include <stdio.h>
 # include "../libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
-# define WIDTH	1370
-# define HEIGHT	700
 # define ESCKEY		65307
 # define DOWN		65362
 # define UP		65364
@@ -32,7 +30,7 @@ typedef struct s_complex
 {
 	double	r;
 	double	i;
-}				t_complex;
+}				t_comp;
 
 typedef struct s_color
 {
@@ -56,6 +54,8 @@ typedef struct s_mlx
 	int			line_length;
 	int			endian;
 	int			max_iter;
+	int			width;
+	int			height;
 	double		xscale;
 	double		yscale;
 	double		xmin;
@@ -63,9 +63,9 @@ typedef struct s_mlx
 	double		ymin;
 	double		ymax;
 	double		zoom;
-	t_complex	c;
-	t_complex	z;
-	t_complex	temp;
+	t_comp		c;
+	t_comp		z;
+	t_comp		temp;
 	t_color		pixel;
 
 }				t_mlx;
@@ -85,8 +85,9 @@ void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y);
 /*
 draw.c
 */
-t_complex	convert_to_complex(int x, int y, t_mlx *t);
 void	draw(t_mlx *t);
+t_comp	convert_to_complex(int x, int y, t_mlx *t);
+t_comp	julia_parameters(t_mlx *t);
 
 /*
 mandelbrot.c
@@ -99,7 +100,6 @@ julia.c
 */
 void	julia_init(t_mlx *t);
 void	julia(t_mlx *t, int x, int y);
-t_complex	julia_parameters(t_mlx *t);
 
 /*
 hook.c
