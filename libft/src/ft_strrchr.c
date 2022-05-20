@@ -6,7 +6,7 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:25:16 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/03 17:13:30 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:42:52 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int len;
+	int	len;
 
 	if ((char)c == '\0')
 		return ((char *)s + ft_strlen(s));

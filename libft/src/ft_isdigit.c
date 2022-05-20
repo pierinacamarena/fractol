@@ -6,13 +6,13 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:40:24 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/03 17:02:01 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 16:56:34 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }

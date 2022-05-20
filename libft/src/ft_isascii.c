@@ -6,13 +6,13 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:47:12 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/03 17:08:45 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:41:03 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int		ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	return (c >= 0 && c <= 127);
 }

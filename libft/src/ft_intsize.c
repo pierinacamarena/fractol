@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-int		ft_intsize(int n)
+int	ft_intsize(int n)
 {
 	int		size;
 

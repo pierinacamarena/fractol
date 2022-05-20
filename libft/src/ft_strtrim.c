@@ -6,7 +6,7 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 23:40:30 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/03 23:41:17 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:37:11 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_frontstr(char const *s1, char const *set, int front)
 {
-	int j;
-	int k;
+	int	j;
+	int	k;
 
 	k = ft_strlen(set);
 	while (s1[front])
@@ -33,8 +33,8 @@ static int	ft_frontstr(char const *s1, char const *set, int front)
 
 static int	ft_backstr(char const *s1, char const *set, int back, int front)
 {
-	int j;
-	int k;
+	int	j;
+	int	k;
 
 	j = 0;
 	k = ft_strlen(set);
@@ -51,7 +51,7 @@ static int	ft_backstr(char const *s1, char const *set, int back, int front)
 	return (back);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*strtrim;
 	int		front;
@@ -69,7 +69,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 	front = ft_frontstr(s1, set, front);
 	back = ft_backstr(s1, set, back, front);
 	len = back - front + 1;
-	if (!(strtrim = ft_strnew(len)))
+	strtrim = ft_strnew(len);
+	if (!strtrim)
 		return (NULL);
 	while (len--)
 		strtrim[i++] = s1[front++];

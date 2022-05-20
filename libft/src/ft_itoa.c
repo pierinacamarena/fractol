@@ -6,7 +6,7 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 22:57:30 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/03 21:33:40 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:41:43 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,28 @@ static char	*ft_neg_itoa(char *numstr, int n, int len)
 	return (numstr);
 }
 
-char		*ft_itoa(int n)
+char	*itoa_dummy(int n)
+{
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	else
+		return (NULL);
+}
+
+char	*ft_itoa(int n)
 {
 	int		len;
 	int		mainlen;
 	char	*numstr;
 
-	if (n == 0 || n == -2147483648)
-		return (ft_strdup(!n ? "0" : "-2147483648"));
+	if (n == -2147483648 || n == 0)
+		return (itoa_dummy(n));
 	len = ft_intsize(n);
 	mainlen = ft_intsize(n);
-	if (!(numstr = ft_strnew(len)))
+	numstr = ft_strnew(len);
+	if (!numstr)
 		return (NULL);
 	if (n < 0)
 		ft_neg_itoa(numstr, n, len);

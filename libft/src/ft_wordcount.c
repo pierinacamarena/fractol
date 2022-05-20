@@ -6,13 +6,13 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:51:30 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/01 00:35:32 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 16:57:05 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int		ft_wordcount(char const *s, char c)
+int	ft_wordcount(char const *s, char c)
 {
 	int	count;
 	int	i;

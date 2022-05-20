@@ -74,6 +74,8 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	t = malloc(sizeof(t_mlx));
+	if (!t)
+		return (-1);
 	t->param = param_check(av, ac, t);
 	if (t->param == '\0')
 	{

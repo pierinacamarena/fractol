@@ -6,16 +6,16 @@
 /*   By: pcamaren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 22:12:29 by pcamaren          #+#    #+#             */
-/*   Updated: 2019/12/03 16:58:18 by pcamaren         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:39:24 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int nb;
-	int sign;
+	int	nb;
+	int	sign;
 
 	nb = 0;
 	sign = 1;

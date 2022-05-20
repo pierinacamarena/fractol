@@ -20,7 +20,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	if (!(joinstr = ft_strnew(len)))
+	joinstr = ft_strnew(len);
+	if (!joinstr)
 		return (NULL);
 	ft_strcat(joinstr, s1);
 	ft_strcat(joinstr, s2);
