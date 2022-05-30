@@ -25,6 +25,15 @@ void	julia_init(t_mlx *t)
 	t->zoom = 100;
 }
 
+t_comp	julia_terminal_parameters(t_mlx *t)
+{
+	t_comp	c;
+
+	c.i = t->julia_x;
+	c.r = t->julia_y;
+	return (c);
+}
+
 t_comp	julia_parameters_helper(t_mlx *t)
 {
 	t_comp	c;
@@ -44,6 +53,8 @@ t_comp	julia_parameters_helper(t_mlx *t)
 		c.i = -0.12;
 		c.r = -0.77;
 	}
+	else if (t->julia_id == 't')
+		c = julia_terminal_parameters(t);
 	return (c);
 }
 

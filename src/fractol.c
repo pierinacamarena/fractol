@@ -51,6 +51,8 @@ char	param_check(char **av, int ac, t_mlx *t)
 	{
 		if (ac == 3)
 			dest = param_julia_helper(av, t);
+		else if (ac == 4)
+			dest = param_julia_numbers(av, t);
 		else if (ac == 2)
 		{
 			error_message(2, 'j');

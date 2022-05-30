@@ -63,6 +63,8 @@ typedef struct s_mlx
 	double		ymin;
 	double		ymax;
 	double		zoom;
+	double		julia_x;
+	double		julia_y;
 	t_comp		c;
 	t_comp		z;
 	t_comp		temp;
@@ -131,4 +133,5 @@ param_helper.c
 */
 char	param_julia_helper(char **av, t_mlx *t);
 void	error_message(int i, char f);
+char	param_julia_numbers(char **av, t_mlx *t);
 #endif

@@ -60,3 +60,14 @@ char	param_julia_helper(char **av, t_mlx *t)
 	}
 	return (dest);
 }
+
+char	param_julia_numbers(char **av, t_mlx *t)
+{
+	char	dest;
+
+	dest = 'j';
+	t->julia_x = ft_atof(av[2]);
+	t->julia_y = ft_atof(av[3]);
+	t->julia_id = 't';
+	return (dest);
+}

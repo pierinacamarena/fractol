@@ -51,6 +51,8 @@ SOURCE =			src/ft_atoi.c 			\
 						src/ft_tolower.c		\
 						src/ft_toupper.c		\
 						src/ft_wordcount.c	\
+						src/ft_atof.c \
+						src/ft_power.c \
 
 INC             = -I includes/
 
