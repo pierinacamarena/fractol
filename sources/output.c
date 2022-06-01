@@ -12,28 +12,28 @@
 
 #include "../includes/fractol.h"
 
-void	colors(t_mlx  *f, int i)
+void	colors(t_mlx *t, int i)
 {
-	if (i == f->maxiter)
+	if (i == t->maxiter)
 	{
-		f->pixel.r = 0.0;
-		f->pixel.g = 0.0;
-		f->pixel.b = 0.0;
+		t->pixel.r = 0.0;
+		t->pixel.g = 0.0;
+		t->pixel.b = 0.0;
 	}
 	else
 	{
-		f->pixel.r = (f->pixel.rr * i) * 255 / f->maxiter;
-		f->pixel.g = (f->pixel.rg * i) * 255 / f->maxiter;
-		f->pixel.b = (f->pixel.rb * i) * 255 / f->maxiter;
+		t->pixel.r = (t->pixel.rr * i) * 255 / t->maxiter;
+		t->pixel.g = (t->pixel.rg * i) * 255 / t->maxiter;
+		t->pixel.b = (t->pixel.rb * i) * 255 / t->maxiter;
 	}
 }
 
-void	print_pixel(t_mlx  *f)
+void	print_pixel(t_mlx *t)
 {
 	int	i;
 
-	i = (f->x * f->bpp / 8 + (f->y * f->size_line));
-	f->img_data[i + 0] = f->pixel.r;
-	f->img_data[i + 1] = f->pixel.g;
-	f->img_data[i + 2] = f->pixel.b;
+	i = (t->x * t->bpp / 8 + (t->y * t->size_line));
+	t->img_data[i + 0] = t->pixel.r;
+	t->img_data[i + 1] = t->pixel.g;
+	t->img_data[i + 2] = t->pixel.b;
 }

@@ -137,23 +137,23 @@ typedef struct s_mlx
 
 
 /* draw */
-void	display_fractal(t_mlx  *f);
-void	fractal_set(t_mlx  *f);
+void	draw(t_mlx *t);
+void	julia(t_mlx *t);
 
 /* zoom */
-int		mouse_hook(int button, int x, int y, t_mlx  *f);
+int		mouse_hook(int button, int x, int y, t_mlx *t);
 
 /* key controls */
-int		key_hook(int keycode, t_mlx  *f);
-int		close_window(int keycode, t_mlx  *f);
+int		key_hook(int keycode, t_mlx *t);
+int		close_window(int keycode, t_mlx *t);
 
 /* init */
-void	init_image(t_mlx  *f);
-void	init_borders (t_mlx  *f);
+void	init_image(t_mlx *t);
+void	init_borders (t_mlx *t);
 
 /* output */
-void	print_pixel(t_mlx  *f);
-void	colors(t_mlx  *f, int i);
+void	print_pixel(t_mlx *t);
+void	colors(t_mlx *t, int i);
 
 /* utils */
 int		str_digit(char *new);
@@ -176,7 +176,7 @@ fractol.c
 basic_drawing.c
 */
 //void	color(t_mlx *t, int i);
-//void	color_change(t_mlx *t);
+//void	color_variation(t_mlx *t);
 //void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y);
 
 /*

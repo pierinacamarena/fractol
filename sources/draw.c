@@ -17,26 +17,28 @@
  * displaying the fractal throught an x y canvas
  */
 
-void	display_fractal(t_mlx  *f)
+void	draw(t_mlx *t)
 {
-	f->xscale = (f->xmax - f->xmin) / (f->w - 1);
-	f->yscale = (f->ymax - f->ymin) / (f->h - 1);
-	f->y = 0;
-	while (f->y < f->h)
+	t->xscale = (t->xmax - t->xmin) / (t->w - 1);
+	t->yscale = (t->ymax - t->ymin) / (t->h - 1);
+	t->y = 0;
+	while (t->y < t->h)
 	{
-		f->c.i = f->ymin + f->y * f->yscale;
-		f->x = 0;
-		while (f->x < f->w)
+		t->c.i = t->ymin + t->y * t->yscale;
+		t->x = 0;
+		while (t->x < t->w)
 		{
-			f->c.r = f->xmin + f->x * f->xscale;
-			if (f->id == 1)
-				mandelbrot(f);
-			else
-				fractal_set(f);
-			print_pixel(f);
-			f->x++;
+			t->c.r = t->xmin + t->x * t->xscale;
+			if (t->id == 1)
+				mandelbrot(t);
+			else if (t->id == 2)
+				julia(t);
+			else if (t->id == 3)
+				burningship(t);
+			print_pixel(t);
+			t->x++;
 		}
-		f->y++;
+		t->y++;
 	}
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
+	mlx_put_image_to_window(t->mlx_ptr, t->win_ptr, t->img_ptr, 0, 0);
 }

@@ -12,48 +12,37 @@
 
 #include "../includes/fractol.h"
 
-/*
- * setup the variables of the differents fractals
- */
-
-static void	setup_fract(t_mlx  *f)
+static void	setup_fract(t_mlx *t)
 {
-	if (f->id == 1 || f->id == 3)
+	if (t->id == 1 || t->id == 3)
 	{
-		f->z.r = 0.0;
-		f->z.i = 0.0;
+		t->z.r = 0.0;
+		t->z.i = 0.0;
 	}
-	if (f->id == 2)
+	if (t->id == 2)
 	{
-		f->z.i = f->ymin + f->y * f->yscale;
-		f->z.r = f->xmin + f->x * f->xscale;
-		f->c.r = f->j.r;
-		f->c.i = f->j.i;
+		t->z.i = t->ymin + t->y * t->yscale;
+		t->z.r = t->xmin + t->x * t->xscale;
+		t->c.r = t->j.r;
+		t->c.i = t->j.i;
 	}
 }
 
-/*
- * launching the algorithm of the fractal
- */
-
-void	fractal_set(t_mlx  *f)
+void	julia(t_mlx *t)
 {
 	int		i;
 	double	tmp;
 
-	setup_fract(f);
+	setup_fract(t);
 	i = 0;
-	while (((f->z.r * f->z.r) + (f->z.i * f->z.i) <= 4.0) && (i < f->maxiter))
+	while (((t->z.r * t->z.r) + (t->z.i * t->z.i) <= 4.0) && (i < t->maxiter))
 	{
-		tmp = (f->z.r * f->z.r) - (f->z.i * f->z.i) + f->c.r;
-		if (f->id == 3)
-			f->z.i = fabs(2 * f->z.r * f->z.i) + f->c.i;
-		else
-			f->z.i = 2 * f->z.r * f->z.i + f->c.i;
-		f->z.r = tmp;
+		tmp = (t->z.r * t->z.r) - (t->z.i * t->z.i) + t->c.r;
+		t->z.i = 2 * t->z.r * t->z.i + t->c.i;
+		t->z.r = tmp;
 		i++;
 	}
-	colors(f, i);
+	colors(t, i);
 }
 
 void	mandelbrot(t_mlx *t)
@@ -73,6 +62,23 @@ void	mandelbrot(t_mlx *t)
 		}
 		t->z.r = t->temp.r;
 		t->z.i = t->temp.i;
+		i++;
+	}
+	colors(t, i);
+}
+
+void	burningship(t_mlx *t)
+{
+	int		i;
+	double	temp;
+
+	i = 0;
+	setup_fract(t);
+	while (((t->z.r * t->z.r) + (t->z.i * t->z.i) <= 4.0) && (i < t->maxiter))
+	{
+		temp = (t->z.r * t->z.r) - (t->z.i * t->z.i) + t->c.r;
+		t->z.i = fabs(2 * t->z.r * t->z.i) + t->c.i;
+		t->z.r = temp;
 		i++;
 	}
 	colors(t, i);

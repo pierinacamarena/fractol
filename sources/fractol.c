@@ -16,27 +16,27 @@
  * subfunction that is handling differents hooks
  */
 
-static void	hooks(t_mlx  *f)
+static void	hooks(t_mlx *t)
 {
-	mlx_key_hook(f->win_ptr, key_hook, f);
-	mlx_mouse_hook(f->win_ptr, mouse_hook, f);
-	mlx_hook(f->win_ptr, 17, 0, close_window, f);
+	mlx_key_hook(t->win_ptr, key_hook, t);
+	mlx_mouse_hook(t->win_ptr, mouse_hook, t);
+	mlx_hook(t->win_ptr, 17, 0, close_window, t);
 }
 
-/*static int	take_arg(t_mlx  *f)
+/*static int	take_arg(t_mlx *t)
 {
-	if (!(ft_strcmp(f->argv[1], "mandelbrot")))
+	if (!(ft_strcmp(t->argv[1], "mandelbrot")))
 	{
-		f->id = 1;
-		if (f->argc > 2)
+		t->id = 1;
+		if (t->argc > 2)
 			return (0);
 	}
-	else if (!(ft_strcmp(f->argv[1], "julia")))
-		f->id = 2;
-	else if (!(ft_strcmp(f->argv[1], "burningship")))
+	else if (!(ft_strcmp(t->argv[1], "julia")))
+		t->id = 2;
+	else if (!(ft_strcmp(t->argv[1], "burningship")))
 	{
-		f->id = 3;
-		if (f->argc != 2)
+		t->id = 3;
+		if (t->argc != 2)
 			return (0);
 	}
 	else
@@ -48,13 +48,13 @@ static void	hooks(t_mlx  *f)
  * first main subfunction that is handling arguments
  */
 
-/*static int	setup(t_mlx  *f, int argc, char **argv)
+/*static int	setup(t_mlx *t, int argc, char **argv)
 {
 	if (argc < 2 || argc > 4)
 		return (0);
-	f->id = 0;
-	f->argv = argv;
-	f->argc = argc;
+	t->id = 0;
+	t->argv = argv;
+	t->argc = argc;
 	if (take_arg(f))
 		return (1);
 	return (0);
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 	init_image(t);
 	init_borders(t);
 	hooks(t);
-	display_fractal(t);
+	draw(t);
 	mlx_loop(t->mlx_ptr);
 }
 
@@ -102,8 +102,8 @@ int	main(int ac, char **av)
 		init_image(f);
 		init_mlx (f);
 		hooks(f);
-		display_fractal(f);
-		mlx_loop(f->mlx_ptr);
+		draw(f);
+		mlx_loop(t->mlx_ptr);
 	}
 	else
 	{

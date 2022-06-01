@@ -26,7 +26,7 @@ SRC_PATH  = sources
 MLX = minilibx-linux
 
 
-SOURCES =	controls.c \
+SOURCES =	movements.c \
 			draw.c \
 			fractol.c \
 			fractols.c \

@@ -26,38 +26,38 @@ static double	interpolate(double start, double end, double inter)
  * position after one scroll
  */
 
-static void	apply_zoom(int x, int y, t_mlx  *f)
+static void	apply_zoom(int x, int y, t_mlx *t)
 {
 	t_complex	mouse;
 	double		inter;
 
-	inter = 1.0 / f->zoom;
-	mouse.r = x / (f->w / (f->xmax - f->xmin)) + f->xmin;
-	mouse.i = y / (f->h / (f->ymax - f->ymin)) + f->ymin;
-	f->xmin = interpolate(mouse.r, f->xmin, inter);
-	f->ymin = interpolate(mouse.i, f->ymin, inter);
-	f->xmax = interpolate(mouse.r, f->xmax, inter);
-	f->ymax = interpolate(mouse.i, f->ymax, inter);
+	inter = 1.0 / t->zoom;
+	mouse.r = x / (t->w / (t->xmax - t->xmin)) + t->xmin;
+	mouse.i = y / (t->h / (t->ymax - t->ymin)) + t->ymin;
+	t->xmin = interpolate(mouse.r, t->xmin, inter);
+	t->ymin = interpolate(mouse.i, t->ymin, inter);
+	t->xmax = interpolate(mouse.r, t->xmax, inter);
+	t->ymax = interpolate(mouse.i, t->ymax, inter);
 }
 
 /*
  * taking as arguments the x and y position and the button pressed
  */
 
-int	mouse_hook(int button, int x, int y, t_mlx  *f)
+int	mouse_hook(int button, int x, int y, t_mlx *t)
 {
 	if (button == 4 || button == 1)
 	{
-		f->zoom = 0.80;
-		apply_zoom(x, y, f);
-		f->maxiter -= 5;
+		t->zoom = 0.80;
+		apply_zoom(x, y, t);
+		t->maxiter -= 5;
 	}
 	else if (button == 5 || button == 2)
 	{
-		f->zoom = 1.20;
-		apply_zoom(x, y, f);
-		f->maxiter += 5;
+		t->zoom = 1.20;
+		apply_zoom(x, y, t);
+		t->maxiter += 5;
 	}
-	display_fractal(f);
+	draw(t);
 	return (0);
 }

@@ -12,49 +12,34 @@
 
 #include "../includes/fractol.h"
 
-void	init_image(t_mlx  *f)
+void	init_image(t_mlx *t)
 {
-	f->pixel.rr = 100 % (0x4F + 0x01);
-	f->pixel.rg = 100 % (0x4F + 0x01);
-	f->pixel.rb = 0 % (0x4F + 0x01);
-	f->w = 800;
-	f->h = 800;
-	f->zoom = 100;
-	f->mlx_ptr = mlx_init();
-	f->win_ptr = mlx_new_window(f->mlx_ptr, f->w, f->h, "fractol");
-	f->img_ptr = mlx_new_image(f->mlx_ptr, f->w, f->h);
-	f->img_data = (unsigned char *)mlx_get_data_addr
-		(f->img_ptr, &f->bpp, &f->size_line, &f->endian);
+	t->pixel.rr = 30 % (0x4F + 0x01);
+	t->pixel.rg = 90 % (0x4F + 0x01);
+	t->pixel.rb = 60 % (0x4F + 0x01);
+	t->w = 800;
+	t->h = 800;
+	t->zoom = 100;
+	t->mlx_ptr = mlx_init();
+	t->win_ptr = mlx_new_window(t->mlx_ptr, t->w, t->h, "fractol");
+	t->img_ptr = mlx_new_image(t->mlx_ptr, t->w, t->h);
+	t->img_data = (unsigned char *)mlx_get_data_addr
+		(t->img_ptr, &t->bpp, &t->size_line, &t->endian);
 }
 
-static void	setup_x(t_mlx  *f)
+void	init_borders (t_mlx *t)
 {
-	if (f->id == 1 || f->id == 2)
+	if (t->id == 1 || t->id == 2)
 	{
-		f->xmin = -2.0;
-		f->xmax = 2.0;
+		t->xmin = -2.0;
+		t->xmax = 2.0;
 	}
-	else if (f->id == 3)
+	else if (t->id == 3)
 	{
-		f->xmin = -2.5;
-		f->xmax = 1;
+		t->xmin = -2.5;
+		t->xmax = 1;
 	}
-}
-
-void	init_borders (t_mlx  *f)
-{
-	if (f->id == 1 || f->id == 2)
-	{
-		f->xmin = -2.0;
-		f->xmax = 2.0;
-	}
-	else if (f->id == 3)
-	{
-		f->xmin = -2.5;
-		f->xmax = 1;
-	}
-	f->maxiter = 100;
-	setup_x(f);
-	f->ymin = -2.0;
-	f->ymax = f->ymin + (f->xmax - f->xmin) * f->h / f->w;
+	t->maxiter = 100;
+	t->ymin = -2.0;
+	t->ymax = t->ymin + (t->xmax - t->xmin) * t->h / t->w;
 }
