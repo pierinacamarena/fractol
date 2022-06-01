@@ -22,11 +22,21 @@ NAME   = fractol
 LIBFT  = libft
 OBJ_PATH  = objs
 HEADER = includes
-SRC_PATH  = src
+SRC_PATH  = sources
 MLX = minilibx-linux
 
+
+SOURCES =	controls.c \
+			draw.c \
+			fractol.c \
+			fractols.c \
+			init.c \
+			output.c \
+			parsing.c \
+			utils.c \
+			zoom.c 
 ### SOURCE FILES ###
-SOURCES = fractol.c \
+#SOURCES = fractol.c \
 			basic_drawing.c \
 			draw.c \
 			mandelbrot.c \
@@ -35,7 +45,7 @@ SOURCES = fractol.c \
 			init.c \
 			zoom.c \
 			burningship.c \
-			param_helper.c \
+			param_helper.c \#
 
 ### OBJECTS ###
 
