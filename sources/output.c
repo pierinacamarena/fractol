@@ -14,7 +14,7 @@
 
 void	colors(t_mlx *t, int i)
 {
-	if (i == t->maxiter)
+	if (i == t->max_iter)
 	{
 		t->pixel.r = 0.0;
 		t->pixel.g = 0.0;
@@ -22,9 +22,9 @@ void	colors(t_mlx *t, int i)
 	}
 	else
 	{
-		t->pixel.r = (t->pixel.rr * i) * 255 / t->maxiter;
-		t->pixel.g = (t->pixel.rg * i) * 255 / t->maxiter;
-		t->pixel.b = (t->pixel.rb * i) * 255 / t->maxiter;
+		t->pixel.r = (t->pixel.rr * i) * 255 / t->max_iter;
+		t->pixel.g = (t->pixel.rg * i) * 255 / t->max_iter;
+		t->pixel.b = (t->pixel.rb * i) * 255 / t->max_iter;
 	}
 }
 

@@ -29,11 +29,11 @@ void	draw(t_mlx *t)
 		while (t->x < t->w)
 		{
 			t->c.r = t->xmin + t->x * t->xscale;
-			if (t->id == 1)
+			if (t->param == 'm')
 				mandelbrot(t);
-			else if (t->id == 2)
+			else if (t->param == 'j')
 				julia(t);
-			else if (t->id == 3)
+			else if (t->param == 'b')
 				burningship(t);
 			print_pixel(t);
 			t->x++;

@@ -29,7 +29,7 @@ void	hook_calls(t_mlx *t)
 
 int	close_window(int keycode, t_mlx *t)
 {
-	if (keycode == ESCKEY)
+	if (keycode == ESC)
 	{
 		mlx_clear_window(t->mlx, t->mlx_win);
 		mlx_destroy_image(t->mlx, t->img);
@@ -47,12 +47,12 @@ int	close_window(int keycode, t_mlx *t)
 
 int	key_hook(int keycode, t_mlx *t)
 {
-	if (keycode == ESCKEY)
+	if (keycode == ESC)
 		close_window(keycode, t);
 	else if (keycode == UP || keycode == DOWN \
 	|| keycode == LEFT || keycode == RIGHT)
 		move_fractal(keycode, t);
-	else if (keycode == COLORKEY)
+	else if (keycode == COLOR)
 		color_change(t);
 	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-static void	setup_fract(t_mlx *t)
+static void	complex_numbers(t_mlx *t)
 {
 	if (t->id == 1 || t->id == 3)
 	{
@@ -35,7 +35,7 @@ void	julia(t_mlx *t)
 
 	setup_fract(t);
 	i = 0;
-	while (((t->z.r * t->z.r) + (t->z.i * t->z.i) <= 4.0) && (i < t->maxiter))
+	while (((t->z.r * t->z.r) + (t->z.i * t->z.i) <= 4.0) && (i < t->max_iter))
 	{
 		tmp = (t->z.r * t->z.r) - (t->z.i * t->z.i) + t->c.r;
 		t->z.i = 2 * t->z.r * t->z.i + t->c.i;
@@ -51,13 +51,15 @@ void	mandelbrot(t_mlx *t)
 
 	i = 0;
 	setup_fract(t);
-	while ((i < t->maxiter) && (t->z.r * t->z.r + t->z.i * t->z.i < 4.0))
+	t->z.r = 0.0;
+	t->z.i = 0.0;
+	while ((i < t->max_iter) && (t->z.r * t->z.r + t->z.i * t->z.i < 4.0))
 	{
 		t->temp.r = t->z.r * t->z.r - t->z.i * t->z.i + t->c.r;
 		t->temp.i = t->z.r * t->z.i * 2.0 + t->c.i;
 		if (t->z.r == t->temp.r && t->z.i == t->temp.i)
 		{
-			i = t->maxiter;
+			i = t->max_iter;
 			break ;
 		}
 		t->z.r = t->temp.r;
@@ -74,7 +76,7 @@ void	burningship(t_mlx *t)
 
 	i = 0;
 	setup_fract(t);
-	while (((t->z.r * t->z.r) + (t->z.i * t->z.i) <= 4.0) && (i < t->maxiter))
+	while (((t->z.r * t->z.r) + (t->z.i * t->z.i) <= 4.0) && (i < t->max_iter))
 	{
 		temp = (t->z.r * t->z.r) - (t->z.i * t->z.i) + t->c.r;
 		t->z.i = fabs(2 * t->z.r * t->z.i) + t->c.i;

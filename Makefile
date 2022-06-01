@@ -29,7 +29,7 @@ MLX = minilibx-linux
 SOURCES =	movements.c \
 			draw.c \
 			fractol.c \
-			fractols.c \
+			fractols_func.c \
 			init.c \
 			output.c \
 			parsing.c \

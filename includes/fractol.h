@@ -20,12 +20,12 @@
 # include <limits.h>
 # include "../libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
-# define ESCKEY		65307
-# define ARROW_DOWN		65362
-# define ARROW_UP		65364
-# define ARROW_LEFT		65361
-# define ARROW_RIGHT		65363
-# define COLORKEY	99
+# define ESC		65307
+# define DOWN		65362
+# define UP		65364
+# define LEFT		65361
+# define RIGHT		65363
+# define COLOR	99
 
 typedef struct s_complex
 {
@@ -45,8 +45,6 @@ typedef struct s_color
 
 typedef struct s_mlx
 {
-	int				argc;
-	char			**argv;
 	char			param;
 	char			julia_id;
 	int				id;
@@ -72,7 +70,7 @@ typedef struct s_mlx
 	double			ymax;
 	double			xscale;
 	double			yscale;
-	int				maxiter;
+	int				max_iter;
 	double			zoom;
 }				t_mlx;
 

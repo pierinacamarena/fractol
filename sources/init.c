@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alangloi <alangloi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcamaren <marvin@42.tr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 19:06:40 by alangloi          #+#    #+#             */
-/*   Updated: 2021/09/21 18:25:54 by alangloi         ###   ########.fr       */
+/*   Created: 2021/10/05 19:28:50 by pcamaren          #+#    #+#             */
+/*   Updated: 2021/10/07 15:46:16 by pcamaren         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/fractol.h"
 
@@ -17,7 +18,7 @@ void	init_image(t_mlx *t)
 	t->pixel.rr = 30 % (0x4F + 0x01);
 	t->pixel.rg = 90 % (0x4F + 0x01);
 	t->pixel.rb = 60 % (0x4F + 0x01);
-	t->w = 800;
+	t->w = 1000;
 	t->h = 800;
 	t->zoom = 100;
 	t->mlx_ptr = mlx_init();
@@ -39,7 +40,7 @@ void	init_borders (t_mlx *t)
 		t->xmin = -2.5;
 		t->xmax = 1;
 	}
-	t->maxiter = 100;
+	t->max_iter = 100;
 	t->ymin = -2.0;
 	t->ymax = t->ymin + (t->xmax - t->xmin) * t->h / t->w;
 }
