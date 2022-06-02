@@ -20,16 +20,16 @@ void	init_image(t_mlx *t)
 	t->w = 800;
 	t->h = 800;
 	t->zoom = 100;
-	t->mlx_ptr = mlx_init();
+	t->mlx = mlx_init();
 	if (t->param == 'm')
-		t->win_ptr = mlx_new_window(t->mlx_ptr, t->w, t->h, "mandelbrot");
+		t->win = mlx_new_window(t->mlx, t->w, t->h, "mandelbrot");
 	else if (t->param == 'j')
-		t->win_ptr = mlx_new_window(t->mlx_ptr, t->w, t->h, "julia");
+		t->win  = mlx_new_window(t->mlx, t->w, t->h, "julia");
 	else if (t->param == 'b')
-		t->win_ptr = mlx_new_window(t->mlx_ptr, t->w, t->h, "burningship");
-	t->img_ptr = mlx_new_image(t->mlx_ptr, t->w, t->h);
+		t->win = mlx_new_window(t->mlx, t->w, t->h, "burningship");
+	t->img = mlx_new_image(t->mlx, t->w, t->h);
 	t->img_data = (unsigned char *)mlx_get_data_addr
-		(t->img_ptr, &t->bpp, &t->size_line, &t->endian);
+		(t->img, &t->bpp, &t->size_line, &t->endian);
 }
 
 void	init_borders_mandel_julia(t_mlx *t)

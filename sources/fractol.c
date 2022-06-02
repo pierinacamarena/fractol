@@ -14,9 +14,9 @@
 
 static void	hooks(t_mlx *t)
 {
-	mlx_key_hook(t->win_ptr, key_hook, t);
-	mlx_mouse_hook(t->win_ptr, mouse_hook, t);
-	mlx_hook(t->win_ptr, 17, 0, close_window, t);
+	mlx_key_hook(t->win, key_hook, t);
+	mlx_mouse_hook(t->win, mouse_hook, t);
+	mlx_hook(t->win, 17, 0, close_window, t);
 }
 
 int	main(int ac, char **av)
@@ -45,5 +45,5 @@ int	main(int ac, char **av)
 		init_borders_burningship(t);
 	hooks(t);
 	draw(t);
-	mlx_loop(t->mlx_ptr);
+	mlx_loop(t->mlx);
 }

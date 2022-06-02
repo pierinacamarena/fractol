@@ -46,10 +46,9 @@ typedef struct s_color
 typedef struct s_mlx
 {
 	char			param;
-	char			julia_id;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	void			*img_ptr;
+	void			*mlx;
+	void			*win;
+	void			*img;
 	unsigned char	*img_data;
 	int				bpp;
 	int				size_line;

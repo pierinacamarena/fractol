@@ -24,11 +24,11 @@ int	close_window(int keycode, t_mlx *t)
 {
 	if (keycode == ESC)
 	{
-		mlx_clear_window(t->mlx_ptr, t->win_ptr);
-		mlx_destroy_image(t->mlx_ptr, t->img_ptr);
-		mlx_destroy_window(t->mlx_ptr, t->win_ptr);
-		mlx_destroy_display(t->mlx_ptr);
-		free(t->mlx_ptr);
+		mlx_clear_window(t->mlx, t->win);
+		mlx_destroy_image(t->mlx, t->img);
+		mlx_destroy_window(t->mlx, t->win);
+		mlx_destroy_display(t->mlx);
+		free(t->mlx);
 		free(t);
 	}
 	exit(0);
