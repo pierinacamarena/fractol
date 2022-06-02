@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alangloi <alangloi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcamaren <marvin@42.tr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 19:06:27 by alangloi          #+#    #+#             */
-/*   Updated: 2021/09/14 13:25:31 by alangloi         ###   ########.fr       */
+/*   Created: 2021/10/05 19:28:50 by pcamaren          #+#    #+#             */
+/*   Updated: 2022/05/26 22:23:18 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-/*
- * subfunction that is handling differents hooks
- */
 
 static void	hooks(t_mlx *t)
 {
@@ -23,52 +19,11 @@ static void	hooks(t_mlx *t)
 	mlx_hook(t->win_ptr, 17, 0, close_window, t);
 }
 
-/*static int	take_arg(t_mlx *t)
-{
-	if (!(ft_strcmp(t->argv[1], "mandelbrot")))
-	{
-		t->id = 1;
-		if (t->argc > 2)
-			return (0);
-	}
-	else if (!(ft_strcmp(t->argv[1], "julia")))
-		t->id = 2;
-	else if (!(ft_strcmp(t->argv[1], "burningship")))
-	{
-		t->id = 3;
-		if (t->argc != 2)
-			return (0);
-	}
-	else
-		return (0);
-	return (1);
-}*/
-
-/*
- * first main subfunction that is handling arguments
- */
-
-/*static int	setup(t_mlx *t, int argc, char **argv)
-{
-	if (argc < 2 || argc > 4)
-		return (0);
-	t->id = 0;
-	t->argv = argv;
-	t->argc = argc;
-	if (take_arg(f))
-		return (1);
-	return (0);
-}*/
-
-/*
- * Main function, allocating f and running the main subfunctions
- */
-
 int	main(int ac, char **av)
 {
 	t_mlx	*t;
 
-	if (ac < 2 || ac > 4)
+	if (ac < 2 || ac > 4 || ac == 3)
 	{
 		error_message(3, 'e');
 		exit(0);
@@ -84,34 +39,11 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	init_image(t);
-	init_borders(t);
+	if (t->param == 'm' || t->param == 'j')
+		init_borders_mandel_julia(t);
+	else if (t->param == 'b')
+		init_borders_burningship(t);
 	hooks(t);
 	draw(t);
 	mlx_loop(t->mlx_ptr);
 }
-
-/*int	main(int argc, char **argv)
-{
-	t_mlx 	*f;
-
-	f = malloc(sizeof(t_mlx ));
-	if (!f)
-		return (0);
-	if (setup(f, argc, argv))
-	{
-		init_image(f);
-		init_mlx (f);
-		hooks(f);
-		draw(f);
-		mlx_loop(t->mlx_ptr);
-	}
-	else
-	{
-		ft_putstr_fd("Wrong argument\t\t", 1);
-		ft_putstr_fd("./fractol <julia, mandelbrot, burningship>", 1);
-		ft_putstr_fd(" if julia : <float1> <float2>\n", 1);
-		free(f);
-		exit(0);
-	}
-	return (0);
-}*/

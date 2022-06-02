@@ -29,23 +29,11 @@ MLX = minilibx-linux
 SOURCES =	movements.c \
 			draw.c \
 			fractol.c \
-			fractols_func.c \
 			init.c \
-			output.c \
+			pixel_output.c \
 			parsing.c \
-			utils.c \
 			zoom.c 
 ### SOURCE FILES ###
-#SOURCES = fractol.c \
-			basic_drawing.c \
-			draw.c \
-			mandelbrot.c \
-			julia.c \
-			hook.c \
-			init.c \
-			zoom.c \
-			burningship.c \
-			param_helper.c \#
 
 ### OBJECTS ###
 

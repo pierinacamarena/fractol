@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                    :+:      :+:    :+:   */
+/*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.tr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,7 +19,6 @@ static void	color_variation(t_mlx *t)
 	t->pixel.rg = t->pixel.rg + 100 % 255;
 	draw(t);
 }
-
 
 int	close_window(int keycode, t_mlx *t)
 {

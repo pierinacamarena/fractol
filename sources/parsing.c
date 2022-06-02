@@ -49,33 +49,23 @@ char	param_check(char **av, int ac, t_mlx *t)
 	dest = '\0';
 	if (!(ft_strcmp(av[1], "julia")))
 	{
-		t->id = 2;
-		if (ac == 4)
+		if (check_double(av[2]) && check_double(av[3]))
 		{
-			if (str_digit(av[2]) && str_digit(av[3]))
-			{
-				t->j.r = ft_atof(av[2]);
-				t->j.i = ft_atof(av[3]);
-				dest = 'j';
-			}
-			else
-			{
-				error_message(2, 'j');
-				free(t);
-				exit(0);
-			}
+			t->j.r = ft_atof(av[2]);
+			t->j.i = ft_atof(av[3]);
+			dest = 'j';
+		}
+		else
+		{
+			error_message(2, 'j');
+			free(t);
+			exit(0);
 		}
 	}
 	else if (!(ft_strcmp(av[1], "mandelbrot")))
-	{
 		dest = param_mandelbrot(ac);
-		t->id = 1;
-	}
 	else if (!(ft_strcmp(av[1], "burningship")))
-	{
 		dest = param_burningship(ac);
-		t->id = 3;
-	}
 	return (dest);
 }
 
@@ -105,4 +95,19 @@ void	error_message(int i, char f)
 		ft_putstr_fd("./fractol {mandelbrot/julia/burningship}\n", 1);
 		ft_putstr_fd("if julia -> ./fractol julia {parameters numbers}\n", 1);
 	}
+}
+
+int	check_double(char *double_str)
+{
+	char	*str;
+
+	str = double_str;
+	if (!str)
+		return (0);
+	if ((str[0] == '0' && str[1] == '.' && str[2] == '0') || str[0] == '0' )
+		return (1);
+	if (ft_atof(str) > INT_MAX || ft_atof(str) < INT_MIN
+		|| ft_atof(str) == 0.0)
+		return (0);
+	return (1);
 }

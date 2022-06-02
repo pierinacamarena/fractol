@@ -47,7 +47,6 @@ typedef struct s_mlx
 {
 	char			param;
 	char			julia_id;
-	int				id;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
@@ -74,71 +73,13 @@ typedef struct s_mlx
 	double			zoom;
 }				t_mlx;
 
-
-/*typedef struct s_mlx
-{
-	void		*mlx;
-	void		*mlx_win;
-	void		*img;
-	char		*addr;
-	char		param;
-	char		julia_id;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			max_iter;
-	int			width;
-	int			height;
-	double		xscale;
-	double		yscale;
-	double		xmin;
-	double		xmax;
-	double		ymin;
-	double		ymax;
-	double		zoom;
-	t_comp		c;
-	t_comp		z;
-	t_comp		temp;
-	t_color		pixel;
-}				t_mlx;*/
-
-/*typedef struct s_mlx
-{
-	void		*mlx;
-	void		*mlx_win;
-	void		*img;
-	char		*addr;
-	char		param;
-	char		julia_id;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			max_iter;
-	int			width;
-	int			height;
-	double		xscale;
-	double		yscale;
-	double		xmin;
-	double		xmax;
-	double		ymin;
-	double		ymax;
-	double		zoom;
-	double		julia_x;
-	double		julia_y;
-	t_comp		c;
-	t_comp		z;
-	t_comp		temp;
-	t_color		pixel;
-
-}				t_mlx;*/
-
-
-
 /* draw */
 void	draw(t_mlx *t);
+void	mandelbrot(t_mlx *t);
 void	julia(t_mlx *t);
+void	burningship(t_mlx *t);
 
-/* zoom */
+/* movements */
 int		mouse_hook(int button, int x, int y, t_mlx *t);
 
 /* key controls */
@@ -147,85 +88,18 @@ int		close_window(int keycode, t_mlx *t);
 
 /* init */
 void	init_image(t_mlx *t);
-void	init_borders (t_mlx *t);
+void	init_borders_mandel_julia(t_mlx *t);
+void	init_borders_burningship(t_mlx *t);
 
 /* output */
 void	print_pixel(t_mlx *t);
 void	colors(t_mlx *t, int i);
 
-/* utils */
-int		str_digit(char *new);
-
+/* parsing */
 char	param_julia_numbers(char **av, t_mlx *t);
 char	param_julia_helper(char **av, t_mlx *t);
 void	error_message(int i, char f);
 char	param_check(char **av, int ac, t_mlx *t);
-char	param_mandelbrot(int ac);
-char	param_burningship(int ac);
-void	mandelbrot(t_mlx *t);
-void	julia(t_mlx *t);
-void	burningship(t_mlx *t);
-/*
-fractol.c
-*/
-//char	param_check(char **av, int ac, t_mlx *t);
-
-/*
-basic_drawing.c
-*/
-//void	color(t_mlx *t, int i);
-//void	color_variation(t_mlx *t);
-//void	my_mlx_pixel_put(t_mlx *tmlx, int x, int y);
-
-/*
-draw.c
-*/
-//void	draw(t_mlx *t);
-//t_comp	convert_to_complex(int x, int y, t_mlx *t);
-//t_comp	julia_parameters(t_mlx *t);
-
-/*
-mandelbrot.c
-*/
-//void	mandel_init(t_mlx *t);
-//void	mandelbrot(t_mlx *t, int x, int y);
-
-/*
-julia.c
-*/
-//void	julia_init(t_mlx *t);
-//void	julia(t_mlx *t, int x, int y);
-
-/*
-hook.c
-*/
-//int		close_window(int keycode, t_mlx *t);
-//int		key_hook(int keycode, t_mlx *t);
-//void	hook_calls(t_mlx *t);
-//void	move_fractal(int keycode, t_mlx *t);
-
-/*
-init.c
-*/
-//void	init_image(t_mlx *t);
-//void	set_up(t_mlx *t);
-
-/*
-zoom.c
-*/
-//int		mouse_hook(int button, int x, int y, t_mlx *t);
-
-/*
-burningship.c
-*/
-//void	burningship_init(t_mlx *t);
-//void	burningship(t_mlx *t, int x, int y);
-
-/*
-param_helper.c
-*/
-//char	param_julia_helper(char **av, t_mlx *t);
-//void	error_message(int i, char f);
-//char	param_julia_numbers(char **av, t_mlx *t);
+int		check_double(char *double_str);
 
 #endif

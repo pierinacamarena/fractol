@@ -3,30 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alangloi <alangloi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcamaren <marvin@42.tr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 19:07:17 by alangloi          #+#    #+#             */
-/*   Updated: 2021/09/08 21:37:48 by alangloi         ###   ########.fr       */
+/*   Created: 2021/10/05 19:28:50 by pcamaren          #+#    #+#             */
+/*   Updated: 2022/05/26 22:23:18 by pcamaren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-/*
- * this function calculate the new coordinate of one point after the zoom
- */
 
 static double	interpolate(double start, double end, double inter)
 {
 	return (start + ((end - start) * inter));
 }
 
-/*
- * here we calculate the 4 coordinate of the new window depending of the mouse
- * position after one scroll
- */
-
-static void	apply_zoom(int x, int y, t_mlx *t)
+static void	zooming(int x, int y, t_mlx *t)
 {
 	t_complex	mouse;
 	double		inter;
@@ -40,22 +31,18 @@ static void	apply_zoom(int x, int y, t_mlx *t)
 	t->ymax = interpolate(mouse.i, t->ymax, inter);
 }
 
-/*
- * taking as arguments the x and y position and the button pressed
- */
-
 int	mouse_hook(int button, int x, int y, t_mlx *t)
 {
 	if (button == 4 || button == 1)
 	{
 		t->zoom = 0.80;
-		apply_zoom(x, y, t);
+		zooming(x, y, t);
 		t->max_iter -= 5;
 	}
 	else if (button == 5 || button == 2)
 	{
 		t->zoom = 1.20;
-		apply_zoom(x, y, t);
+		zooming(x, y, t);
 		t->max_iter += 5;
 	}
 	draw(t);

@@ -58,6 +58,6 @@ char	*ft_strnew(size_t size);
 char	*ft_strcat(char *dst, const char *src);
 int		ft_wordcount(char const *s, char c);
 double	ft_atof(char *s);
-int     ft_power(int base, unsigned int power);
+int		ft_power(int base, unsigned int power);
 
 #endif
