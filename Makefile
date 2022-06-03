@@ -11,20 +11,21 @@
 # **************************************************************************** #
 
 
-### COMPILATION ###
+### Compilation ###
 CC      = gcc -O2 -g
 FLAGS  = -Wall -Wextra -Werror
 
-### EXECUTABLE ###
+### Executable ###
 NAME   = fractol
 
-### INCLUDES ###
+### Includes ###
 LIBFT  = libft
 OBJ_PATH  = objs
 HEADER = includes
 SRC_PATH  = sources
 MLX = minilibx-linux
 
+### Source Files ###
 
 SOURCES =	movements.c \
 			draw.c \
@@ -33,9 +34,8 @@ SOURCES =	movements.c \
 			pixel_output.c \
 			parsing.c \
 			zoom.c 
-### SOURCE FILES ###
 
-### OBJECTS ###
+### Objects ###
 
 SRCS = $(addprefix $(SRC_PATH)/,$(SOURCES))
 OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
@@ -64,22 +64,22 @@ lib:
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) -o $@ $^ -lft -lmlx -lXext -lX11 -lm
-	@echo "$(GREEN)Project successfully compiled"
+	@echo "$(GREEN)Project compiled succesfully"
 
 tmp:
 	@mkdir -p objs
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)/$(NAME).h
 	@$(CC) $(FLAGS) -c -o $@ $<
-	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
+	@echo "$(WHITE)Creation of object file -> $(BLUE)$(notdir $@)... $(RED)[Done]$(NOC)"
 
 clean:
-	@echo "$(GREEN)Supressing libraries files$(CYAN)"
+	@echo "$(GREEN)Cleaning libraries$(CYAN)"
 	@make clean -C $(LIBFT)
 	@rm -rf $(OBJ_PATH)
 
 fclean:
-	@echo "$(GREEN)Supressing libraries files$(CYAN)"
+	@echo "$(GREEN)Cleaning libraries files$(CYAN)"
 	@rm -rf $(OBJ_PATH)
 	@rm -f $(NAME)
 	@make fclean -C $(LIBFT)
