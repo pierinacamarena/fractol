@@ -32,13 +32,22 @@ void	init_image(t_mlx *t)
 		(t->img, &t->bpp, &t->size_line, &t->endian);
 }
 
-void	init_borders_mandel_julia(t_mlx *t)
+void	init_borders_mandel(t_mlx *t)
 {
 	t->xmin = -2.0;
 	t->xmax = 2.0;
 	t->max_iter = 100;
 	t->ymin = -2.0;
 	t->ymax = t->ymin + (t->xmax - t->xmin) * t->h / t->w;
+}
+
+void	init_borders_julia(t_mlx *t)
+{
+	t->xmin = -2.0;
+	t->xmax = 2.0;
+	t->max_iter = 100;
+	t->ymin = 2.0;
+	t->ymax = -2.0;
 }
 
 void	init_borders_burningship(t_mlx *t)

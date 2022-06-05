@@ -39,8 +39,10 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	init_image(t);
-	if (t->param == 'm' || t->param == 'j')
-		init_borders_mandel_julia(t);
+	if (t->param == 'm')
+		init_borders_mandel(t);
+	else if (t->param == 'j')
+		init_borders_julia(t);
 	else if (t->param == 'b')
 		init_borders_burningship(t);
 	hooks(t);

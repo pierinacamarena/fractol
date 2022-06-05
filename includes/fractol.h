@@ -87,7 +87,8 @@ int		close_window(int keycode, t_mlx *t);
 
 /* init */
 void	init_image(t_mlx *t);
-void	init_borders_mandel_julia(t_mlx *t);
+void	init_borders_mandel(t_mlx *t);
+void	init_borders_julia(t_mlx *t);
 void	init_borders_burningship(t_mlx *t);
 
 /* output */

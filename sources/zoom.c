@@ -24,6 +24,8 @@ static void	zooming(int x, int y, t_mlx *t)
 
 	inter = 1.0 / t->zoom;
 	mouse.r = x / (t->w / (t->xmax - t->xmin)) + t->xmin;
+	if (t->param == 'j')
+		mouse.i = y / (t->h / (t->ymin - t->ymax)) + t->ymax;
 	mouse.i = y / (t->h / (t->ymax - t->ymin)) + t->ymin;
 	t->xmin = interpolate(mouse.r, t->xmin, inter);
 	t->ymin = interpolate(mouse.i, t->ymin, inter);
