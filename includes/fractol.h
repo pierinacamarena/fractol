@@ -102,4 +102,7 @@ void	error_message(int i, char f);
 char	param_check(char **av, int ac, t_mlx *t);
 int		check_double(char *double_str);
 
+/* free_fractol */
+int		ft_free_fractol(t_mlx *t);
+int		ft_finish(t_mlx *t);
 #endif

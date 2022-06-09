@@ -33,7 +33,8 @@ SOURCES =	movements.c \
 			init.c \
 			pixel_output.c \
 			parsing.c \
-			zoom.c 
+			zoom.c \
+			free_fractol.c \
 
 ### Objects ###
 

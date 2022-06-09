@@ -24,6 +24,7 @@ int	close_window(int keycode, t_mlx *t)
 {
 	if (keycode == ESC)
 	{
+		//ft_free_fractol(t);
 		mlx_clear_window(t->mlx, t->win);
 		mlx_destroy_image(t->mlx, t->img);
 		mlx_destroy_window(t->mlx, t->win);

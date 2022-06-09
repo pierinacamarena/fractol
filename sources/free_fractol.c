@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   free_fractol.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcamaren <marvin@42.tr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,41 +12,35 @@
 
 #include "../includes/fractol.h"
 
-static void	hooks(t_mlx *t)
+int ft_free_fractol(t_mlx *t)
 {
-	mlx_key_hook(t->win, key_hook, t);
-	mlx_mouse_hook(t->win, mouse_hook, t);
-	mlx_hook(t->win, KeyPress, KeyPressMask, close_window, t);
-	mlx_hook(t->win, 17, 0L, &ft_finish, t);
+	if (t->win && t->mlx)
+	{
+		mlx_destroy_window(t->mlx, t->win);
+		t->win = NULL;
+	}
+	if (t->img && t->mlx)
+	{
+		mlx_destroy_image(t->mlx, t->img);
+		t->img = NULL;
+	}
+	if (t->mlx)
+	{
+		mlx_destroy_display(t->mlx);
+		free(t->mlx);
+		t->mlx = NULL;
+	}
+    exit (0);
 }
 
-int	main(int ac, char **av)
+int	ft_finish(t_mlx *t)
 {
-	t_mlx	*t;
-
-	if (ac < 2 || ac > 4 || ac == 3)
-	{
-		error_message(3, 'e');
-		exit(0);
-	}
-	t = malloc(sizeof(t_mlx));
-	if (!t)
-		return (-1);
-	t->param = param_check(av, ac, t);
-	if (t->param == '\0')
-	{
-		error_message(3, 'e');
-		free(t);
-		exit(0);
-	}
-	init_image(t);
-	if (t->param == 'm')
-		init_borders_mandel(t);
-	else if (t->param == 'j')
-		init_borders_julia(t);
-	else if (t->param == 'b')
-		init_borders_burningship(t);
-	hooks(t);
-	draw(t);
-	mlx_loop(t->mlx);
+    mlx_clear_window(t->mlx, t->win);
+	mlx_destroy_image(t->mlx, t->img);
+	mlx_destroy_window(t->mlx, t->win);
+    mlx_destroy_display(t->mlx);
+	free(t->mlx);
+	free(t);
+    ft_putstr_fd("project finished\n", 1);
+	exit (0);
 }
